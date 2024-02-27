@@ -37,7 +37,12 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-       return productService.addProduct(product);
+        return productService.addProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+         productService.deleteProductById(id);
     }
 
     // 1st way - Best way
@@ -81,7 +86,7 @@ public class ProductController {
  */
 
 /**
- * 1 Constructor Injection
- * 2. Feild Injection
- * 3. Setter Injection
+ - Construtor Injection - Best way to use
+ - Filed Injection      - not recommended, readability issue in case of huge service list
+ - Setter Injection     - not recommended , readability AND while writing Unit Test cases can see NPE.
  */

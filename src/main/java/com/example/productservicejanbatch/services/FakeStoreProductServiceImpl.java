@@ -44,19 +44,17 @@ public class FakeStoreProductServiceImpl implements  ProductService{
         }
         return  productList;
     }
-
-    @Override
-    public void deleteProductById(Long id) {
-
-    }
-
     public Product addProduct(Product product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto>  responseEntity = restTemplate.postForEntity(
                 genericProductUrl,getFakeStoreproductDtoFromProduct(product), FakeStoreProductDto.class);
         return getProductFromFakeStoreproductDto(responseEntity.getBody());
     }
-
+    @Override
+    public void deleteProductById(Long id) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        restTemplate.delete(specificProductUrl, id);
+    }
     @Override
     public void updateProductById() {
 
