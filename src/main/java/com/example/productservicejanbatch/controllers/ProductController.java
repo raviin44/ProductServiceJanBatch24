@@ -40,9 +40,14 @@ public class ProductController {
         return productService.addProduct(product);
     }
 
-    @DeleteMapping("/{id}")
+   /* @DeleteMapping("/{id}")
     public void deleteProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
          productService.deleteProductById(id);
+    }*/
+
+    @DeleteMapping("/{id}")
+    public Product deleteProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+        return productService.deleteProductById(id);
     }
 
     // 1st way - Best way
